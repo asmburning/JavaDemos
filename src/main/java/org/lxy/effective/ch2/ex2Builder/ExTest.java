@@ -20,8 +20,8 @@ public class ExTest {
 
     @Test
     public void test2() {
-        System.out.println("java".compareTo("hello"));
-        System.out.println(new BigDecimal("1.0").compareTo(new BigDecimal("1.00")));
+        log.info("{}", "java".compareTo("hello"));
+        log.info("{}", new BigDecimal("1.0").compareTo(new BigDecimal("1.00")));
         log.info("hello");
     }
 }
