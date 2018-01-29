@@ -19,5 +19,6 @@ public class Item38Test {
     @Test
     public void test2() {
         doTest(BasicOperation.class, 3.2, 2.5);
+        
     }
 }
