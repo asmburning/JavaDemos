@@ -1,0 +1,1 @@
+ssh-keygen -t rsa -C "826102786@qq.com" -f id_rsa_github

@@ -1,0 +1,52 @@
+<Context>
+    <!-- 使用阿里巴巴的DruidDataSource配置针对Oracle数据库的JNDI数据源 -->
+    <Resource 
+        name="jdbc/OracleDataSource"
+        factory="com.alibaba.druid.pool.DruidDataSourceFactory"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="oracle.jdbc.OracleDriver"
+        url="jdbc:oracle:thin:@192.168.1.229:1521:lead"
+        username="lead_oams"
+        password="p"
+        maxActive="50"
+        maxWait="10000"
+        removeabandoned="true"
+        removeabandonedtimeout="60"
+        logabandoned="false"
+        filters="stat"/>
+        
+    <!-- 使用阿里巴巴的DruidDataSource配置针对MySQL数据库的JNDI数据源 -->
+     <Resource 
+        name="jdbc/MysqlDataSource"
+        factory="com.alibaba.druid.pool.DruidDataSourceFactory"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://192.168.1.233:3306/lead_oams?useUnicode=true&amp;characterEncoding=utf-8"
+        username="lead_system"
+        password="password"
+        maxActive="50"
+        maxWait="10000"
+        removeabandoned="true"
+        removeabandonedtimeout="60"
+        logabandoned="false"
+        filters="stat"/>
+        
+    <!--使用阿里巴巴的DruidDataSource配置针对SQLServer数据库的JNDI数据源-->
+    <Resource 
+        name="jdbc/SqlServerDataSource"
+        auth="Container"
+        factory="com.alibaba.druid.pool.DruidDataSourceFactory" 
+        type="javax.sql.DataSource"
+        driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+        url="jdbc:sqlserver://192.168.1.61:1433;DatabaseName=gaclTest"
+        username="sa" 
+        password="p@ssw0rd"
+        maxActive="50"
+        maxWait="10000"
+        removeabandoned="true"
+        removeabandonedtimeout="60"
+        logabandoned="false"
+        filters="stat"/>
+</Context>
