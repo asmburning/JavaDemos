@@ -64,4 +64,23 @@ public class Ch1Test {
         log.info("Main: Configuration has been loaded: {}",
                 new Date());
     }
+
+    @Test
+    public void testGroup() {
+        MyThreadGroup threadGroup = new MyThreadGroup("MyThreadGroup");
+        Task task = new Task();
+        for (int i = 0; i < 4; i++) {
+            Thread t = new Thread(threadGroup, task);
+            t.start();
+        }
+        log.info("Number of Threads: {}", threadGroup.activeCount());
+        log.info("Information about the Thread Group");
+        threadGroup.list();
+
+        Thread[] threads = new Thread[threadGroup.activeCount()];
+        threadGroup.enumerate(threads);
+        for (int i = 0; i < threadGroup.activeCount(); i++) {
+            log.info("Thread {},{}", threads[i].getName(), threads[i].getState());
+        }
+    }
 }
