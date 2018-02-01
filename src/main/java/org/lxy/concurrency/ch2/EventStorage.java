@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * producer consumer use synchronized wait and notifyAll
+ */
 @Data
 @Slf4j
 public class EventStorage {

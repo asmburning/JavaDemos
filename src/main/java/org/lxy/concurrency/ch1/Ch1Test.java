@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * Thread.suspend and Thread.resume deprecated
  * https://docs.oracle.com/javase/8/docs/technotes/guides/concurrency/threadPrimitiveDeprecation.html
  *
  * The Java concurrency API has another method that makes a thread object leave the CPU. It's
