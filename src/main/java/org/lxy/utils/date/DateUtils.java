@@ -19,12 +19,12 @@ public class DateUtils {
      * SimpleDateFormat 创建的开销比较大,SimpleDateFormat又不是线程安全的,在线程池情况下会有性能提升,
      * 如果全部是新的线程,性能会下降
      */
-    private static final ThreadLocal<Map<String, SimpleDateFormat>> patternFormatLocalMap =
+    private static final ThreadLocal<Map<String, SimpleDateFormat>> PATTERN_FORMAT_LOCAL_MAP =
             ThreadLocal.withInitial(ConcurrentHashMap::new);
 
 
     private static SimpleDateFormat getSimpleDateFormat(String pattern) {
-        Map<String, SimpleDateFormat> formatMap = patternFormatLocalMap.get();
+        Map<String, SimpleDateFormat> formatMap = PATTERN_FORMAT_LOCAL_MAP.get();
         return formatMap.computeIfAbsent(pattern, SimpleDateFormat::new);
     }
 
@@ -63,5 +63,21 @@ public class DateUtils {
         log.info(map.get("b"));
         map.getOrDefault("c", "c");
         log.info(map.get("c"));
+    }
+
+    @Test
+    public void testCalendar() {
+        Calendar calendar = Calendar.getInstance();
+        log.info(calendar.toString());
+    }
+
+    @Test
+    public void testRemove() {
+        SimpleDateFormat simpleDateFormat = getSimpleDateFormat(PATTERN_A);
+        Map<String, SimpleDateFormat> map = PATTERN_FORMAT_LOCAL_MAP.get();
+        log.info("before remove size:{}", map.size());
+        PATTERN_FORMAT_LOCAL_MAP.remove();
+        map = PATTERN_FORMAT_LOCAL_MAP.get();
+        log.info("after remove size:{}", map.size());
     }
 }
