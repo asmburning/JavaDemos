@@ -17,11 +17,14 @@ import java.security.Security;
 public class AesUtils {
 
     private static final String KEY_GENERATOR_ALGORITHM = "AES";
-    private static final String Cipher_ALGORITHM = "AES/ECB/PKCS7Padding";
+    private static final String CIPHER_ALGORITHM = "AES/ECB/PKCS7Padding";
+    public static final String CIPHER_ALGORITHM2 = "AES/CFB/NoPadding";
 
     static {
         Security.addProvider(new BouncyCastleProvider());
     }
+
+    private AesUtils(){}
 
     /**
      * @see com.sun.crypto.provider.AESKeyGenerator
@@ -44,7 +47,7 @@ public class AesUtils {
 
     public static String encrypt(String source, String secretKey) {
         try {
-            Cipher cipher = Cipher.getInstance(Cipher_ALGORITHM, BouncyCastleProvider.PROVIDER_NAME);
+            Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM, BouncyCastleProvider.PROVIDER_NAME);
             cipher.init(Cipher.ENCRYPT_MODE, base64ToSecretKey(secretKey));
             byte[] encrypt = cipher.doFinal(source.getBytes());
             return Base64.encodeBase64String(encrypt);
@@ -55,7 +58,7 @@ public class AesUtils {
 
     public static String decode(String source, String secretKey) {
         try {
-            Cipher cipher = Cipher.getInstance(Cipher_ALGORITHM);
+            Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
             cipher.init(Cipher.DECRYPT_MODE, base64ToSecretKey(secretKey));
             byte[] decrypt = cipher.doFinal(Base64.decodeBase64(source));
             return new String(decrypt);

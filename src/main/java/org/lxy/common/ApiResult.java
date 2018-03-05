@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * 需要同时有无参和全参构造器,不然jackson序列化会失败
  * @param <T>
@@ -13,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ApiResult<T> {
+public class ApiResult<T> implements Serializable{
     private static final String SUCCESS_CODE = ApiCode.OK.getCode();
 
     private boolean success;
