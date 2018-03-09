@@ -80,4 +80,14 @@ public class DateUtils {
         map = PATTERN_FORMAT_LOCAL_MAP.get();
         log.info("after remove size:{}", map.size());
     }
+
+    @Test
+    public void testSalary() {
+        for (int i = 15; i < 30; i++) {
+            int hundreds = i * 1000 / 6 % 1000;
+            if (hundreds >= 800) {
+                log.info("i:{},hundreds:{}", i * 1000, hundreds);
+            }
+        }
+    }
 }
