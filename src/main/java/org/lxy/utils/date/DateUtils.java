@@ -4,10 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
@@ -89,5 +86,13 @@ public class DateUtils {
                 log.info("i:{},hundreds:{}", i * 1000, hundreds);
             }
         }
+    }
+
+
+    @Test
+    public void testRandom() {
+        log.info(new Random().nextInt(2) + "");
+        log.info(new Random().nextInt(2) + "");
+        log.info(new Random().nextInt(2) + "");
     }
 }
