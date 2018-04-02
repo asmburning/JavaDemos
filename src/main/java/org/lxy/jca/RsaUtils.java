@@ -41,7 +41,6 @@ public class RsaUtils {
     /**
      * for more sign ALGORITHM
      * @see org.bouncycastle.jcajce.provider.asymmetric.RSA
-     * @see  org.bouncycastle.x509.X509Util
      */
     private static final String DEFAULT_SIGN_ALGORITHM = "SHA256withRSA";
 
