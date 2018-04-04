@@ -20,7 +20,7 @@ public class SwapTest {
         a = b;
         b = c;
         c = t;
-        //log.info("doSwap a:{},b:{},c:{}", a, b, c);
+        log.info("doSwap a:{},b:{},c:{}", a, b, c);
     }
 
 
