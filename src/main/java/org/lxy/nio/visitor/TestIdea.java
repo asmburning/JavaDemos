@@ -21,7 +21,12 @@ public class TestIdea {
     }
 
     @Test
-    public void dev(){
+    public void dev() {
         log.info("this is dev");
+    }
+
+    @Test
+    public void master() {
+
     }
 }
