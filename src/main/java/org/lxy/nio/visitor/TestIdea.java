@@ -27,6 +27,6 @@ public class TestIdea {
 
     @Test
     public void master() {
-
+        log.info("this is master commit");
     }
 }
