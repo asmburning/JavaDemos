@@ -23,6 +23,7 @@ public class TestIdea {
     @Test
     public void dev() {
         log.info("this is dev");
+        log.info("this is dev2");
     }
 
     @Test
