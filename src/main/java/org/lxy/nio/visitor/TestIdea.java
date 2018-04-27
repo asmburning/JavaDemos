@@ -12,7 +12,7 @@ public class TestIdea {
 
     @Test
     public void test() throws Exception {
-        String dirPath = "D:/code/qf-depo/posp-depo-account-clear-settle-backend";
+        String dirPath = "D:/code/qf-depo/posp-depo-account-backend";
         // String dirPath = "D:/code/qk/backend";
         Path backend = Paths.get(dirPath);
         IdeaDeleter walk = new IdeaDeleter();
