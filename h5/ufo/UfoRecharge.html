@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>优富网关充值测试</title>
+</head>
+<body>
+
+<form>
+    token: <input id="token" name="token"/> <br>
+    userId: <input id="userId" name="userId"/> <br>
+    mobile可用 : 13300100035 14433333302<br>
+    mobile: <input id="mobile" name="mobile" value="13300100035"/><br>
+    password: <input id="password" name="password" value="200820e3227815ed1756a6b531e7e0d2"/><br>
+    <button id="login">测试登录</button>
+    <br>
+    <button id="recharge">测试充值</button>
+    <br>
+</form>
+
+<form id="gatewayForm" action="" method="post" target="_blank">
+    <input id="interfaceId" name="interfaceId" value="QF-POSP-DEPO-GATEWAY-RECHARGE-0025"/>
+    <input id="merchantCode" name="merchantCode" value="10"/>
+    <input id="applicationCode" name="applicationCode" value="1014"/>
+    <input id="buCode" name="buCode" value="C11"/>
+    <input id="userDevice" name="userDevice" value="PC"/>
+    <input id="keySerial" name="keySerial" value="1"/>
+    <input id="reqData" name="reqData"/>
+    <input id="sign" name="sign"/>
+
+    <input id="submitGateway" hidden="hidden" type="submit" value="提交网关">
+</form>
+
+
+<script>
+    $('#login').off('click').on('click', function (e) {
+        e.preventDefault();
+        login();
+    });
+
+    $('#recharge').off('click').on('click', function (e) {
+        e.preventDefault();
+        recharge();
+    });
+
+
+    function login() {
+        var ufoToken = $("#token").val();
+        var mobile = $("#mobile").val();
+        var password = $("#password").val();
+        var date = new Date().getTime();
+        var url = "http://172.16.36.56:8310/ufo/login?mobile=" + mobile + "&password=" + password + "&time=" + date;
+        console.log("login test")
+        $.ajax({
+            url: url,
+            //url: "http://172.16.37.13:3000/zhou",
+            type: 'get',
+            dataType: "json",
+            success: function (data) {
+                $("#token").val(data.data.token);
+                $("#userId").val(data.data.userId);
+            }
+        });
+    }
+
+
+    function recharge() {
+        var ufoToken = $("#token").val();
+        var userId = $("#userId").val();
+        var date = new Date().getTime();
+        var url = "http://172.16.36.56:8310/ufo/recharge/" + userId + "/add?amount=103&time=" + date;
+        $.ajax({
+            headers: {
+                token: ufoToken
+            },
+            url: url,
+            type: "get",
+            success: function (data) {
+                $("#gatewayForm").attr('action', data.data.gatewayRechargeUrl);
+                $("#reqData").val(data.data.requestData.reqData)
+                $("#sign").val(data.data.requestData.sign)
+                gatewayRecharge();
+            }
+        });
+    }
+
+
+    function gatewayRecharge() {
+        debugger;
+        $("#gatewayForm").submit();
+    }
+
+</script>
+
+</body>
+</html>
