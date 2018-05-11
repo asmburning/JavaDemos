@@ -10,10 +10,13 @@
 <form>
     token: <input id="token" name="token"/> <br>
     userId: <input id="userId" name="userId"/> <br>
-    mobile可用 : 13300100035 14433333302<br>
+    devMobile可用 : 14400110004 md5(asd123) bfd59291e825b5f2bbf1eb76569f8fe7<br>
+    sitMobile可用 : 13300100035 md5(qwe123) 200820e3227815ed1756a6b531e7e0d2<br>
     mobile: <input id="mobile" name="mobile" value="13300100035"/><br>
     password: <input id="password" name="password" value="200820e3227815ed1756a6b531e7e0d2"/><br>
-    <button id="login">测试登录</button>
+    <button id="devLogin">devLogin</button>
+    <br>
+    <button id="sitLogin">sitLogin</button>
     <br>
     <button id="recharge">测试充值</button>
     <br>
@@ -34,9 +37,14 @@
 
 
 <script>
-    $('#login').off('click').on('click', function (e) {
+    $('#devLogin').off('click').on('click', function (e) {
         e.preventDefault();
-        login();
+        devLogin();
+    });
+
+    $('#sitLogin').off('click').on('click', function (e) {
+        e.preventDefault();
+        sitLogin();
     });
 
     $('#recharge').off('click').on('click', function (e) {
@@ -44,13 +52,29 @@
         recharge();
     });
 
+    var xinyiLiu = "http://172.16.36.56:8310";
+    var dev = "http://ufo-web-backend.dev.zone1-lb.quark.com";
+    var sit = "http://ufo-web-backend.sit.zone1-lb.quark.com";
+    var baseUrl = dev;
 
-    function login() {
+    function devLogin() {
+        var mobile = "14400110004";
+        var password = "bfd59291e825b5f2bbf1eb76569f8fe7";
+        login(mobile, password);
+    }
+
+    function sitLogin() {
+        var mobile = "13300100035";
+        var password = "200820e3227815ed1756a6b531e7e0d2";
+        login(mobile, password);
+    }
+
+    function login(mobile, password) {
         var ufoToken = $("#token").val();
-        var mobile = $("#mobile").val();
-        var password = $("#password").val();
+        //var mobile = $("#mobile").val();
+        //var password = $("#password").val();
         var date = new Date().getTime();
-        var url = "http://172.16.36.56:8310/ufo/login?mobile=" + mobile + "&password=" + password + "&time=" + date;
+        var url = baseUrl + "/ufo/login?mobile=" + mobile + "&password=" + password + "&time=" + date;
         console.log("login test")
         $.ajax({
             url: url,
@@ -69,7 +93,7 @@
         var ufoToken = $("#token").val();
         var userId = $("#userId").val();
         var date = new Date().getTime();
-        var url = "http://172.16.36.56:8310/ufo/recharge/" + userId + "/add?amount=103&time=" + date;
+        var url = baseUrl + "/ufo/recharge/" + userId + "/add?amount=103&time=" + date;
         $.ajax({
             headers: {
                 token: ufoToken

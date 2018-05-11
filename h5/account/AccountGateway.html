@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>account充值提现测试</title>
+</head>
+<body>
+
+<div>
+    <button id="rechargeTest">测试充值</button>
+    <br>
+    <button id="withdrawTest">测试提现</button>
+    <br>
+    <button id="transferTest">测试转账</button>
+    <br>
+</div>
+
+<form id="accountGatewayForm" action="" method="post" target="_blank">
+    <input id="interfaceId" name="interfaceId"/>
+    <input id="merchantCode" name="merchantCode" value="10"/>
+    <input id="applicationCode" name="applicationCode" value="1000"/>
+    <input id="buCode" name="buCode" value="C11"/>
+    <input id="userDevice" name="userDevice" value="PC"/>
+    <input id="keySerial" name="keySerial" value="1"/>
+    <input id="reqData" name="reqData"/>
+    <input id="sign" name="sign"/>
+</form>
+
+
+<script>
+    $('#rechargeTest').off('click').on('click', function (e) {
+        e.preventDefault();
+        doSubmit("http://172.16.36.56:8240/test/account/recharge");
+    });
+
+    $('#withdrawTest').off('click').on('click', function (e) {
+        e.preventDefault();
+        doSubmit("http://172.16.36.56:8240/test/account/withdraw");
+    });
+
+    $('#transferTest').off('click').on('click', function (e) {
+        e.preventDefault();
+        doSubmit("http://172.16.36.56:8240/test/account/transfer");
+    });
+
+    function doSubmit(apiUrl) {
+        var date = new Date().getTime();
+        console.log(apiUrl)
+        $.ajax({
+            url: apiUrl,
+            type: 'get',
+            dataType: "json",
+            success: function (data) {
+                var obj = JSON.parse(data.t);
+                console.log(typeof obj)
+                $("#interfaceId").val(obj.interfaceId);
+                $("#reqData").val(obj.reqData);
+                $("#sign").val(obj.sign);
+                submitGatewayForm()
+            }
+        });
+    }
+
+    function submitGatewayForm() {
+        $("#accountGatewayForm").attr('action', 'http://172.16.6.55:8290/gate_way/payment');
+        //debugger;
+        $("#accountGatewayForm").submit();
+    }
+
+</script>
+
+</body>
+</html>
