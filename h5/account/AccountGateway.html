@@ -14,6 +14,9 @@
     <br>
     <button id="transferTest">测试转账</button>
     <br>
+    <button id="queryBalance">测试查询渠道余额</button>
+    <br>
+    <input id="queryBalanceResult">
 </div>
 
 <form id="accountGatewayForm" action="" method="post" target="_blank">
@@ -44,12 +47,46 @@
         doSubmit("http://172.16.36.56:8240/test/account/transfer");
     });
 
+    $('#queryBalance').off('click').on('click', function (e) {
+        e.preventDefault();
+        queryBalance()
+    });
+
+    function queryBalance() {
+        var url = "http://172.16.36.56:8240/test/balance/query"
+        $("#queryBalanceResult").val();
+        $.ajax({
+            url: url,
+            type: 'get',
+            timeout: 2000,
+            dataType: "json",
+            success: function (data) {
+                debugger;
+                var list = data.t.balanceList;
+                var b = list[0];
+                $("#queryBalanceResult").val(b.balance);
+            },
+            error: function (xhr, textStatus) {
+                if (textStatus == 'timeout') {
+                    alert("timeout")
+                    //处理超时的逻辑
+                }
+                else {
+                    debugger;
+                    alert(textStatus)
+                    //其他错误的逻辑
+                }
+            }
+        });
+    }
+
     function doSubmit(apiUrl) {
         var date = new Date().getTime();
         console.log(apiUrl)
         $.ajax({
             url: apiUrl,
             type: 'get',
+            timeout: 2000,
             dataType: "json",
             success: function (data) {
                 var obj = JSON.parse(data.t);
@@ -58,6 +95,16 @@
                 $("#reqData").val(obj.reqData);
                 $("#sign").val(obj.sign);
                 submitGatewayForm()
+            },
+            error: function (xhr, textStatus) {
+                if (textStatus == 'timeout') {
+                    alert("timeout")
+                    //处理超时的逻辑
+                }
+                else {
+                    alert(textStatus)
+                    //其他错误的逻辑
+                }
             }
         });
     }

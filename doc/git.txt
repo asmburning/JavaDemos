@@ -1,0 +1,38 @@
+git merge      
+	默认情况下，Git执行"快进式合并"（fast-farward merge）
+	--no-ff
+	
+	将develop分支合并到feature分支最简单的办法就是用下面这些命令：
+	方式一
+	git checkout feature
+	git merge develop 
+	方式二
+	git merge develop feature
+	方式三
+	git checkout feature
+	git merge --no-ff develop
+
+git rebase
+	rebase 的基本指令是 git rebase <new base-commit> ，意思是說，把目前 checkout 出來的 branch 分支處改到新的 commit
+	作为merge的替代选择，你可以像下面这样将develop分支并入feature分支：
+	git checkout feature
+	git rebase develop
+	rebase最大的好处是你的项目历史会非常整洁。首先，它不像git merge 那样引入不必要的合并提交
+	
+	git rebase --onto <new base-commit> <current base-commit>
+	意思是說，把當前 checkout 出來的 branch 從 <current base-commit> 移到 <new base-commit> 上面 ，就像是在稼接時，把新枝的根給「種」在某個點上，而不是接在末梢。
+
+git reset
+	用于回退没有push的本地提交或者在commit点上创建新的分支
+
+git revert
+    用于回退已经push到远程的commit
+	git revert用于反转提交,执行revert命令时要求工作树必须是干净的.否则需要把revert产生的提交再revert一次
+	Git不会真的把旧提交抛弃，如果直接抛弃，历史记录就追踪不到了。
+	因此，旧提交其实是没动的，Git只是根据旧提交反着做了一遍，这才导致最新的代码发生了改变。
+	只有把revert命令回退导致的改动重新提交，revert命令才算真的完成并生效，否则效果只相当于修改了工作树的文件而已。
+
+
+参考文献
+https://www.cnblogs.com/UnGeek/p/5792860.html
+http://blog.chinaunix.net/uid-27714502-id-3436706.html
