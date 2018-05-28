@@ -12,18 +12,12 @@ public class TestIdea {
 
     @Test
     public void test() throws Exception {
-        String dirPath = "D:\\code\\qf-depo\\posp-depo-account-clear-settle-backend";
+        String dirPath = "D:\\code\\qf-depo\\posp-depo-pub-config-backend";
         // String dirPath = "D:/code/qk/backend";
         Path backend = Paths.get(dirPath);
         IdeaDeleter walk = new IdeaDeleter();
         Files.walkFileTree(backend, walk);
         // Files.walkFileTree(backend, walk);
-    }
-
-    @Test
-    public void dev() {
-        log.info("this is dev");
-        log.info("this is dev2");
     }
 
     @Test

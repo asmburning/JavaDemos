@@ -12,18 +12,24 @@
     <br>
     <button id="withdrawTest">测试提现</button>
     <br>
-    <button id="transferTest">测试转账</button>
+    <a target="_blank" href="http://172.16.36.56:8240/test/account/transfer">transfer</a>
     <br>
     <button id="queryBalance">测试查询渠道余额</button>
     <br>
     <input id="queryBalanceResult">
+    <br>
+    <button id="callback">测试callback</button>
+    <br>
+    <a target="_blank" href="http://172.16.36.56:8240/test/account/recharge">recharge</a>
+    <a target="_blank" href="http://172.16.36.56:8240/test/account/withdraw">withdraw</a>
+
 </div>
 
 <form id="accountGatewayForm" action="" method="post" target="_blank">
     <input id="interfaceId" name="interfaceId"/>
     <input id="merchantCode" name="merchantCode" value="10"/>
     <input id="applicationCode" name="applicationCode" value="1000"/>
-    <input id="buCode" name="buCode" value="C11"/>
+    <input id="buCode" name="buCode" value="C10"/>
     <input id="userDevice" name="userDevice" value="PC"/>
     <input id="keySerial" name="keySerial" value="1"/>
     <input id="reqData" name="reqData"/>
@@ -42,14 +48,14 @@
         doSubmit("http://172.16.36.56:8240/test/account/withdraw");
     });
 
-    $('#transferTest').off('click').on('click', function (e) {
-        e.preventDefault();
-        doSubmit("http://172.16.36.56:8240/test/account/transfer");
-    });
-
     $('#queryBalance').off('click').on('click', function (e) {
         e.preventDefault();
         queryBalance()
+    });
+
+    $('#callback').off('click').on('click', function (e) {
+        e.preventDefault();
+        demo()
     });
 
     function queryBalance() {
@@ -113,6 +119,19 @@
         $("#accountGatewayForm").attr('action', 'http://172.16.6.55:8290/gate_way/payment');
         //debugger;
         $("#accountGatewayForm").submit();
+    }
+
+    function baseFunction(callback) {
+        var data = 123;
+        callback(data)
+    }
+
+    function demo() {
+        baseFunction(demoSuccess)
+    }
+
+    function demoSuccess(data) {
+        alert(data)
     }
 
 </script>

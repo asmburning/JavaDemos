@@ -18,6 +18,10 @@
     <br>
     <button id="sitLogin">sitLogin</button>
     <br>
+    <button id="uatLogin">uatLogin</button>
+    <br>
+    <button id="loginInfo">loginInfo</button>
+    <br>
     <button id="recharge">测试充值</button>
     <br>
 </form>
@@ -52,10 +56,21 @@
         recharge();
     });
 
+    $('#loginInfo').off('click').on('click', function (e) {
+        e.preventDefault();
+        loginInfo();
+    });
+
+    $('#uatLogin').off('click').on('click', function (e) {
+        e.preventDefault();
+        uatLogin();
+    });
+
     var xinyiLiu = "http://172.16.36.56:8310";
     var dev = "http://ufo-web-backend.dev.zone1-lb.quark.com";
     var sit = "http://ufo-web-backend.sit.zone1-lb.quark.com";
-    var baseUrl = dev;
+    var uat = "http://ufo-web-backend.uat.zone1-lb.quark.com";
+    var baseUrl = xinyiLiu;
 
     function devLogin() {
         var mobile = "14400110004";
@@ -64,7 +79,14 @@
     }
 
     function sitLogin() {
-        var mobile = "13300100035";
+        var mobile = "14447102003";
+        var password = "200820e3227815ed1756a6b531e7e0d2";
+        login(mobile, password);
+    }
+
+    // qwe123
+    function uatLogin() {
+        var mobile = "14447103000";
         var password = "200820e3227815ed1756a6b531e7e0d2";
         login(mobile, password);
     }
@@ -89,11 +111,28 @@
     }
 
 
+    function loginInfo() {
+        var ufoToken = $("#token").val();
+        var userId = $("#userId").val();
+        var date = new Date().getTime();
+        var url = baseUrl + "/ufo/loginInfo/" + userId + "?time=" + date;
+        $.ajax({
+            headers: {
+                token: ufoToken
+            },
+            url: url,
+            type: "get",
+            success: function (data) {
+                console.log(data.data)
+            }
+        });
+    }
+
     function recharge() {
         var ufoToken = $("#token").val();
         var userId = $("#userId").val();
         var date = new Date().getTime();
-        var url = baseUrl + "/ufo/recharge/" + userId + "/add?amount=103&time=" + date;
+        var url = baseUrl + "/ufo/recharge/" + userId + "/add?amount=50&time=" + date;
         $.ajax({
             headers: {
                 token: ufoToken

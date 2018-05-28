@@ -1,5 +1,10 @@
 package org.lxy.lombok;
 
-public class Book {
+import lombok.Data;
+
+import java.io.Serializable;
+
+@Data
+public class Book implements Serializable {
     private String name;
 }
