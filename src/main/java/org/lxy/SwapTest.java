@@ -1,8 +1,11 @@
 package org.lxy;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 public class SwapTest {
@@ -97,9 +100,14 @@ public class SwapTest {
     }
 
 
-
     @Test
     public void test8() {
-        log.info(DigestUtils.md5Hex("qwe123"));
+        List<BigDecimal> list = new ArrayList();
+        log.info("" + list.stream().reduce(BigDecimal::add).orElseGet(() -> new BigDecimal("0")));
+        log.info("" + list.stream().reduce(BigDecimal::add).orElse(new BigDecimal("0")));
+        list.add(new BigDecimal("100"));
+        list.add(new BigDecimal("200"));
+        log.info("" + list.stream().reduce(BigDecimal::add).orElseGet(() -> new BigDecimal("0")));
+        log.info("" + list.stream().reduce(BigDecimal::add).orElse(new BigDecimal("0")));
     }
 }

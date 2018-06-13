@@ -116,7 +116,10 @@
     }
 
     function submitGatewayForm() {
-        $("#accountGatewayForm").attr('action', 'http://172.16.6.55:8290/gate_way/payment');
+        // dev
+        //$("#accountGatewayForm").attr('action', 'http://172.16.6.55:8290/gate_way/payment');
+        // sit
+        $("#accountGatewayForm").attr('action', 'http://172.16.5.198:8290/gate_way/payment');
         //debugger;
         $("#accountGatewayForm").submit();
     }
