@@ -5,7 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.lxy.common.ApiResult;
-import org.lxy.lombok.Book;
+
+import java.util.Date;
 
 @Slf4j
 public class JsonTest {
@@ -30,8 +31,10 @@ public class JsonTest {
         Book2 book2 = new Book2();
         book2.setName("jack");
         book2.setTitle("jack");
+        book2.setCreateTime(new Date());
+        book2.setUpdateTime(new Date());
         String s = JsonUtils.toJsonString(book2);
-        Book book = JsonUtils.toJavaClass(s, Book.class);
-        log.info(book.toString());
+        Book2 book = JsonUtils.toJavaClass(s, Book2.class);
+        log.info("s:{} , books:{}", s, JsonUtils.toJsonString(book));
     }
 }

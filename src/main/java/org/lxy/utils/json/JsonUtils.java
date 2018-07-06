@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.SimpleTimeZone;
 
 /**
  *
@@ -22,6 +23,7 @@ public class JsonUtils {
   private static final ObjectMapper objectMapper = new ObjectMapper();
 
   static {
+    objectMapper.setTimeZone(new SimpleTimeZone(8 * 60 * 60 * 1000, "BeiJing GMT+8"));
     objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
     objectMapper.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
     objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
