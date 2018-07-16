@@ -62,13 +62,13 @@ public class QfProjectCopyRename implements FileVisitor {
     public FileVisitResult postVisitDirectory(Object dir, IOException exc) throws IOException {
         Path path = (Path) dir;
         log.info("postVisitDirectory: " + path.toFile().getAbsolutePath());
-        if (path.endsWith("depo")) {
+        if (path.endsWith("depo") && path.getParent().endsWith("posp")) {
             File file = path.toFile();
             Path dest = path.getParent().resolveSibling("insurance");
             //dest.toFile().mkdir();
             log.info(file.getName());
             FileUtils.moveDirectory(file, dest.toFile());
-           // Files.deleteIfExists(path.getParent());
+            // Files.deleteIfExists(path.getParent());
         }
         String dirName = path.toFile().getName();
         if (dirName.contains("policy-") || dirName.contains("posp-depo")) {
