@@ -11,7 +11,6 @@ import io.vavr.control.Try;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -48,8 +47,8 @@ public class VavrTest1 {
 
     @Test
     public void test2() {
-        List list = Collections.unmodifiableList(List.of("java", "python"));
-        list.add("C++");
+        //List list = Collections.unmodifiableList(List.of("java", "python"));
+        //list.add("C++");
     }
 
     @Test

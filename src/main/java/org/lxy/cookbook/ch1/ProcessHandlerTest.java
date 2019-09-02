@@ -8,9 +8,9 @@ public class ProcessHandlerTest {
 
     @Test
     public void test1() {
-        ProcessHandle currentProcess = ProcessHandle.current();
-        log.info("PID: " + currentProcess.pid());
-        ProcessHandle.Info currentProcessInfo = currentProcess.info();
-        log.info("Info: " + currentProcessInfo);
+       // ProcessHandle currentProcess = ProcessHandle.current();
+       // log.info("PID: " + currentProcess.pid());
+       // ProcessHandle.Info currentProcessInfo = currentProcess.info();
+       // log.info("Info: " + currentProcessInfo);
     }
 }

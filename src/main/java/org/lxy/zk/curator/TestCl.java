@@ -13,8 +13,8 @@ public class TestCl {
         ClassLoader classLoader = a.getClass().getClassLoader();
         //log.info(classLoader.getName());
         ClassLoader classLoader2 = TestCl.class.getClassLoader();
-        log.info(classLoader2.getName());
+       // log.info(classLoader2.getName());
         ClassLoader classLoader3 = RestTemplate.class.getClassLoader();
-        log.info(classLoader3.getName());
+        //log.info(classLoader3.getName());
     }
 }

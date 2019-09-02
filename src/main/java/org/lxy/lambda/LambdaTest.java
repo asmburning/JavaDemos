@@ -1,6 +1,7 @@
 package org.lxy.lambda;
 
 import com.google.common.base.Suppliers;
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Arrays;
 import org.junit.Test;
@@ -52,14 +53,14 @@ public class LambdaTest {
 
     @Test
     public void testConsumer() {
-        List<Integer> list = List.of(2, 3, 8, 5, 6, 4, 7, 1);
+        List<Integer> list = Lists.newArrayList(2, 3, 8, 5, 6, 4, 7, 1);
         list.forEach(integer -> log.info(integer + ""));
     }
 
     @Test
     public void testArray() {
         String[] array = Arrays.array("java", "hadoop", "hello");
-        List<String> list = List.of("list", "set", "map");
+        List<String> list = Lists.newArrayList("list", "set", "map");
         log.info("{}", list.stream().map(String::toUpperCase).filter(s -> s.contains("A")).count());
         log.info("{}", Stream.of(array).count());
     }

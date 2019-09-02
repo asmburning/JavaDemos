@@ -13,7 +13,8 @@ public class StaxDemo {
     public static final String EVENT_OUT_PATH = "D:/EventOut.xml";
 
     public void testStreamReader() throws Exception {
-        XMLInputFactory xmlif = XMLInputFactory.newDefaultFactory();
+        XMLInputFactory xmlif = null;
+                //XMLInputFactory.newDefaultFactory();
         XMLStreamReader xmlsr;
         xmlsr = xmlif.createXMLStreamReader(new FileReader(FILE_PATH));
         while (xmlsr.hasNext()) {
@@ -30,7 +31,8 @@ public class StaxDemo {
     }
 
     public void testEventReader() throws Exception {
-        XMLInputFactory xmlif = XMLInputFactory.newDefaultFactory();
+        XMLInputFactory xmlif = null;
+                //XMLInputFactory.newDefaultFactory();
         XMLEventReader xmler;
         xmler = xmlif.createXMLEventReader(new FileReader(FILE_PATH));
         while (xmler.hasNext()) {

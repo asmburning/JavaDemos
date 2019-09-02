@@ -1,5 +1,6 @@
 package org.lxy.common;
 
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -68,7 +69,8 @@ public class DiceUtils {
 
     @Test
     public void testSubList() {
-        List<String> list = List.of("java", "python", "hadoop", "spark", "tensorFlow",
+        List<String> list =
+                Lists.newArrayList("java", "python", "hadoop", "spark", "tensorFlow",
                 "redis", "spring", "hibernate", "mybatis", "HBase",
                 "zookeeper", "mahout", "hive");
         int pageNo = 3;
@@ -81,7 +83,7 @@ public class DiceUtils {
 
     @Test
     public void testSorList() {
-        List<Integer> list = List.of(2, 5, 50, 3, 7);
+        List<Integer> list = Lists.newArrayList(2, 5, 50, 3, 7);
         List list1 = list.stream().sorted().collect(Collectors.toList());
         List list2 = list.stream()
                 .sorted(Comparator.reverseOrder())
@@ -91,7 +93,7 @@ public class DiceUtils {
 
     @Test
     public void testSubList2() {
-        List<String> list = List.of("java", "python", "hadoop", "spark", "tensorFlow",
+        List<String> list = Lists.newArrayList("java", "python", "hadoop", "spark", "tensorFlow",
                 "redis", "spring", "hibernate", "mybatis", "HBase",
                 "zookeeper", "mahout", "hive");
         list = list.stream()

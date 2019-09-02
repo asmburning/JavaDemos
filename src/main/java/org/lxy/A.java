@@ -1,5 +1,6 @@
 package org.lxy;
 
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -14,13 +15,13 @@ public class A {
     @Test
     public void test() {
 
-        List<Student> studentList = List.of(new Student("jack"), new Student("tom"));
+        List<Student> studentList = Lists.newArrayList(new Student("jack"), new Student("tom"));
 
-        List<String> list1 = List.of("jack", "tom", "lily", "Eric");
+        List<String> list1 = Lists.newArrayList("jack", "tom", "lily", "Eric");
 
-        List<String> list2 = List.of("apple", "jack", "banana", "orange");
+        List<String> list2 = Lists.newArrayList("apple", "jack", "banana", "orange");
 
-        List<List<String>> list = List.of(list1, list2);
+        List<List<String>> list = Lists.newArrayList(list1, list2);
 
         List<String> list11 = list1.stream().map(s -> s + 1).collect(Collectors.toList());
 

@@ -44,7 +44,7 @@ public class StaticFactory {
         Date d = Date.from( Instant.now());
         Set<Rank> faceCards = EnumSet.of(Rank.JACK, Rank.QUEEN, Rank.KING);
         BigInteger prime = BigInteger.valueOf(Integer.MAX_VALUE);
-        StackWalker luke = StackWalker.getInstance(StackWalker.Option.SHOW_HIDDEN_FRAMES);
+        //StackWalker luke = StackWalker.getInstance(StackWalker.Option.SHOW_HIDDEN_FRAMES);
         Object newArray = Array.newInstance(String.class, 5);
         FileStore fs = Files.getFileStore(Paths.get(""));
         BufferedReader br = Files.newBufferedReader(Paths.get(""));
